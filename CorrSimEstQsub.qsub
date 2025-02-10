@@ -1,0 +1,27 @@
+#!/bin/bash -l
+
+# Project name
+#$ -P as-thesis
+
+#Time limit
+#$ -l h_rt=72:00:00
+
+#Name a job
+#$ -N SimEffectEst
+
+#join error and output stream
+#$ -j y
+
+#Send email when job ends or aborts
+#$-m e
+
+#This line runs the set of nSim simulations this many times
+#$-t 1-50
+
+#Other options that were in script from JB
+#$-l mem_per_core=4G
+
+#Argument is the sample size and the observation date
+#(1 for infection date and 2 for sampling date)
+module load R/3.6.0
+time Rscript PerformSimulationEst_corr.R $1 $2 $3
